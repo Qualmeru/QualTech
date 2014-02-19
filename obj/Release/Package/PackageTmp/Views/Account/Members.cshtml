@@ -1,0 +1,15 @@
+﻿@using Qualtech.Data
+@model System.Data.Entity.DbSet<Qualtech.Models.UserProfile>
+
+@{
+    ViewBag.Title = "Members";
+    
+}
+<table id="">
+    @foreach (var e in Model)
+    {
+        <tr><td><a href="~/Account/UserProfile/@e.UserId">@e.UserName</a></td>
+            <td>@e.LastLogin</td>
+        </tr>
+    }
+</table>

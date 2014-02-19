@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "UserProfile";
+}
+@using System.Globalization
+@model IEnumerable<Qualtech.Models.UserProfile>
+
+<section class="featured">
+    <div class="content-wrapper">
+        <div class="content">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <h2>@DateTime.Now</h2>
+            <h1>@ViewBag.ID</h1>
+            <table>
+                @foreach (var item in Model.Where(item => User.Identity.Name == item.UserName))
+                {
+                    
+                    <tr>
+                        <td>Username: </td>
+                        <td>
+                            @Html.DisplayFor(m => item.UserName)</td>
+                    </tr>
+                    <tr>
+                        <td>Last logedin: </td>
+                        <td>@Html.DisplayFor(m => item.LastLogin)</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>change password</td>
+                        <td>@Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })</td>
+                    </tr>
+                }
+
+
+            </table>
+        </div>
+    </div>
+</section>
+
